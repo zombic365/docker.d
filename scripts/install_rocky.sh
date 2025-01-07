@@ -23,7 +23,8 @@ BPurple="\033[1;35m"      # Purple
 BCyan="\033[1;36m"        # Cyan
 BWhite="\033[1;37m"       # White
 
-##### Common function
+##### Common functio
+TODAY=$(date +%y%m%d_%H%M%S)
 function Logging() {
     _CMD_LOG="tee -a ./script_${TODAY}.log"
     _RUN_TODAY=$(date "+%y%m%d")
