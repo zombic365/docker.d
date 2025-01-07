@@ -123,7 +123,7 @@ function pre_pkg_check() {
     _check_pkg_fail=()
 
     for((i=0; i<=${#_check_pkg[@]}; i++)); do
-        RunCmd "apt list --installed ${_pkg} |grep -q installed"
+        RunCmd "dnf list installed |grep -q ^${_pkg}"
         if [ $? -eq 1 ]; then
             _check_pkg_fail+=${_pkg}
         fi
@@ -145,13 +145,13 @@ function pre_install_docker() {
 
 function install_docker() {
     for _pkg in "docker-ce" "docker-ce-cli" "containerd.io" "docker-buildx-plugin" "docker-compose-plugin"; do
-        RunCmd "apt install -y ${_pkg}"
+        RunCmd "dnf install -y ${_pkg}"
     done
 }
 
 function remove_docker() {
     for _pkg in "docker-ce" "docker-ce-cli" "containerd.io" "docker-buildx-plugin" "docker-compose-plugin" "docker-ce-rootless-extras"; do
-        RunCmd "apt purge -y ${_pkg}"
+        RunCmd "dnf remove -y ${_pkg}"
     done
 
     RunCmd "rm -f /etc/apt/keyrings/docker.asc"
