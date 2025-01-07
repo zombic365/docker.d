@@ -24,6 +24,7 @@ BCyan="\033[1;36m"        # Cyan
 BWhite="\033[1;37m"       # White
 
 ##### Common function
+TODAY=$(date +%y%m%d_%H%M%S)
 function Logging() {
     _CMD_LOG="tee -a ./script_${TODAY}.log"
     _RUN_TODAY=$(date "+%y%m%d")
