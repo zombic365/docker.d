@@ -84,6 +84,7 @@ function set_opts() {
                 pre_install_docker
                 if [ $? -eq 0 ]; then
                     install_docker
+                    exit 0
                 else
                     Logging "CRT" "Install docker check fail"
                     exit 1
@@ -153,7 +154,7 @@ function remove_docker() {
     for _pkg in "docker-ce" "docker-ce-cli" "containerd.io" "docker-buildx-plugin" "docker-compose-plugin" "docker-ce-rootless-extras"; do
         RunCmd "dnf remove -y ${_pkg}"
     done
-
+    RunCmd "dnf config-manager --remove-repo docker-ce"
     RunCmd "rm -f /etc/apt/keyrings/docker.asc"
     RunCmd "rm -f /etc/apt/sources.list.d/docker.list"
     RunCmd "rm -rf /var/lib/docker"
