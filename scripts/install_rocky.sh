@@ -140,7 +140,7 @@ function pre_pkg_check() {
 function pre_install_docker() {
     ##### Docker repository add for rocky
     RunCmd "dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
-    RunCmd "dnf update"
+    RunCmd "dnf repolist"
 }
 
 function install_docker() {
